@@ -14,6 +14,9 @@
 		8B19104721A6A623007FD1C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B19104621A6A623007FD1C6 /* Assets.xcassets */; };
 		8B19104A21A6A623007FD1C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B19104821A6A623007FD1C6 /* LaunchScreen.storyboard */; };
 		8B19104D21A6A623007FD1C6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B19104C21A6A623007FD1C6 /* main.m */; };
+		8B19105521A6A783007FD1C6 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B19105421A6A783007FD1C6 /* BaseViewController.m */; };
+		8B19105821A6A7E1007FD1C6 /* ImageSelectionCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B19105721A6A7E1007FD1C6 /* ImageSelectionCollectionViewController.m */; };
+		8B19105B21A6A9AC007FD1C6 /* PhotoCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B19105A21A6A9AC007FD1C6 /* PhotoCollectionCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,12 @@
 		8B19104921A6A623007FD1C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B19104B21A6A623007FD1C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B19104C21A6A623007FD1C6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8B19105321A6A783007FD1C6 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		8B19105421A6A783007FD1C6 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		8B19105621A6A7E1007FD1C6 /* ImageSelectionCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageSelectionCollectionViewController.h; sourceTree = "<group>"; };
+		8B19105721A6A7E1007FD1C6 /* ImageSelectionCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageSelectionCollectionViewController.m; sourceTree = "<group>"; };
+		8B19105921A6A9AC007FD1C6 /* PhotoCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoCollectionCell.h; sourceTree = "<group>"; };
+		8B19105A21A6A9AC007FD1C6 /* PhotoCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoCollectionCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +79,12 @@
 				8B19104B21A6A623007FD1C6 /* Info.plist */,
 				8B19104C21A6A623007FD1C6 /* main.m */,
 				8B19104321A6A622007FD1C6 /* PhotoKit.xcdatamodeld */,
+				8B19105321A6A783007FD1C6 /* BaseViewController.h */,
+				8B19105421A6A783007FD1C6 /* BaseViewController.m */,
+				8B19105621A6A7E1007FD1C6 /* ImageSelectionCollectionViewController.h */,
+				8B19105721A6A7E1007FD1C6 /* ImageSelectionCollectionViewController.m */,
+				8B19105921A6A9AC007FD1C6 /* PhotoCollectionCell.h */,
+				8B19105A21A6A9AC007FD1C6 /* PhotoCollectionCell.m */,
 			);
 			path = PhotoKit;
 			sourceTree = "<group>";
@@ -145,9 +160,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B19104521A6A622007FD1C6 /* PhotoKit.xcdatamodeld in Sources */,
+				8B19105521A6A783007FD1C6 /* BaseViewController.m in Sources */,
 				8B19103F21A6A622007FD1C6 /* ViewController.m in Sources */,
 				8B19104D21A6A623007FD1C6 /* main.m in Sources */,
 				8B19103C21A6A622007FD1C6 /* AppDelegate.m in Sources */,
+				8B19105821A6A7E1007FD1C6 /* ImageSelectionCollectionViewController.m in Sources */,
+				8B19105B21A6A9AC007FD1C6 /* PhotoCollectionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
