@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Photos/Photos.h>
+#import <PhotosUI/PhotosUI.h>
 
 
 
 @interface ImageSelectionCollectionViewController : UIViewController
 @property (nonatomic,strong) NSMutableArray * assets;
+
+@property (nonatomic,strong) PHFetchResult *  fetchResult;
+@property (nonatomic,strong) PHAssetCollection * assetCollection;
 
 @end
 

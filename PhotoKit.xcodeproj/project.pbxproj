@@ -17,6 +17,7 @@
 		8B19105521A6A783007FD1C6 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B19105421A6A783007FD1C6 /* BaseViewController.m */; };
 		8B19105821A6A7E1007FD1C6 /* ImageSelectionCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B19105721A6A7E1007FD1C6 /* ImageSelectionCollectionViewController.m */; };
 		8B19105B21A6A9AC007FD1C6 /* PhotoCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B19105A21A6A9AC007FD1C6 /* PhotoCollectionCell.m */; };
+		8B19107221AD220A007FD1C6 /* PhtosDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B19107121AD220A007FD1C6 /* PhtosDataSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,8 @@
 		8B19105721A6A7E1007FD1C6 /* ImageSelectionCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageSelectionCollectionViewController.m; sourceTree = "<group>"; };
 		8B19105921A6A9AC007FD1C6 /* PhotoCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoCollectionCell.h; sourceTree = "<group>"; };
 		8B19105A21A6A9AC007FD1C6 /* PhotoCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoCollectionCell.m; sourceTree = "<group>"; };
+		8B19107021AD220A007FD1C6 /* PhtosDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhtosDataSource.h; sourceTree = "<group>"; };
+		8B19107121AD220A007FD1C6 /* PhtosDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhtosDataSource.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +88,8 @@
 				8B19105721A6A7E1007FD1C6 /* ImageSelectionCollectionViewController.m */,
 				8B19105921A6A9AC007FD1C6 /* PhotoCollectionCell.h */,
 				8B19105A21A6A9AC007FD1C6 /* PhotoCollectionCell.m */,
+				8B19107021AD220A007FD1C6 /* PhtosDataSource.h */,
+				8B19107121AD220A007FD1C6 /* PhtosDataSource.m */,
 			);
 			path = PhotoKit;
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 				8B19103F21A6A622007FD1C6 /* ViewController.m in Sources */,
 				8B19104D21A6A623007FD1C6 /* main.m in Sources */,
 				8B19103C21A6A622007FD1C6 /* AppDelegate.m in Sources */,
+				8B19107221AD220A007FD1C6 /* PhtosDataSource.m in Sources */,
 				8B19105821A6A7E1007FD1C6 /* ImageSelectionCollectionViewController.m in Sources */,
 				8B19105B21A6A9AC007FD1C6 /* PhotoCollectionCell.m in Sources */,
 			);
@@ -307,9 +313,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2SL2J3FRZ6;
 				INFOPLIST_FILE = PhotoKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -325,9 +333,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2SL2J3FRZ6;
 				INFOPLIST_FILE = PhotoKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

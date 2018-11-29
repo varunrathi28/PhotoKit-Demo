@@ -7,8 +7,15 @@
 //
 
 #import "ImageSelectionCollectionViewController.h"
+#import "PhotoCollectionCell.h"
 
-@interface ImageSelectionCollectionViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface ImageSelectionCollectionViewController ()<UICollectionViewDelegate,UICollectionViewDataSource, PHPhotoLibraryChangeObserver> {
+    
+    CGSize thumbnailSize;
+}
+
+@property (nonatomic,strong) PHCachingImageManager * imageManager;
+
 
 @end
 
@@ -16,9 +23,38 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+   
+    
     // Do any additional setup after loading the view.
 }
 
+
+-(void)setUp {
+    
+    PHFetchOptions * fetchOptions = [PHFetchOptions new];
+    fetchOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate " ascending:YES]];
+    _fetchResult = [PHAsset fetchAssetsWithOptions:fetchOptions];
+
+    _imageManager = [[PHCachingImageManager alloc]init];
+   // _fetchResult = [PHFetchResult new];
+    _assetCollection = [PHAssetCollection new];
+    
+}
+
+-(void)dealloc {
+    
+}
+
+-(void)registerPhotosLibrary {
+    
+    [PHPhotoLibrary.sharedPhotoLibrary registerChangeObserver:self];
+}
+
+-(void)deregisterPhotosLibrary {
+    
+    [PHPhotoLibrary.sharedPhotoLibrary unregisterChangeObserver:self];
+}
 
 #pragma mark - Collection View methods
 
@@ -28,13 +64,25 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return _assets.count;
+    return _fetchResult.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    UICollectionViewCell * collectionViewCell = [UICollectionViewCell new];
-    return collectionViewCell;
+    PHAsset * asset = [_fetchResult objectAtIndex:indexPath.item];
+    PhotoCollectionCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:[PhotoCollectionCell reuseIdentifier] forIndexPath:indexPath];
+    cell.representedAssetIdentifier = asset.localIdentifier;
+    
+    [_imageManager requestImageForAsset:asset targetSize:thumbnailSize contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        
+        if ([cell.representedAssetIdentifier isEqualToString:asset.localIdentifier]) {
+            if (result) {
+                cell.thumbNailImage = result;
+            }
+        }
+    }];
+    
+    return cell;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -42,18 +90,11 @@
 }
 
 
--(void)showAlertControllerFrom:(UIViewController *)vc animated:(BOOL)animated completion:(void (^ __nullable ) (void))completion  {
 
-    UIAlertController * actionsheet = [UIAlertController new];
-    
-    UIAlertAction * photoAction = [UIAlertAction actionWithTitle:@"Gallery" style:UIAlertActionStyleDefault handler:nil];
-    
-    UIAlertAction * cameraAction = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:nil];
-    
-    [actionsheet addAction:photoAction];
-    [actionsheet addAction:cameraAction];
-    
-    [self presentViewController:actionsheet animated:YES completion:completion];
+
+#pragma mark - Photo Library Change observer
+
+- (void)photoLibraryDidChange:(PHChange *)changeInstance {
     
 }
 

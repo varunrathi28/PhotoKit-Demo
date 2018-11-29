@@ -10,4 +10,21 @@
 
 @implementation PhotoCollectionCell
 
++(NSString *)reuseIdentifier {
+    return NSStringFromClass([self class]);
+}
+
+-(void)setThumbNailImage:(UIImage *)thumbNailImage {
+    
+    self.imageView.image = thumbNailImage;
+    
+}
+
+
+-(void)prepareForReuse {
+    [super prepareForReuse];
+    self.imageView.image = nil;
+    
+}
+
 @end

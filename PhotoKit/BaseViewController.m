@@ -24,6 +24,19 @@
 
 }
 
+
+-(void)showAlertControllerFrom:(UIViewController *)vc animated:(BOOL)animated completion:(void (^ __nullable ) (void))completion  {
+    
+    UIAlertController * actionsheet = [UIAlertController new];
+    UIAlertAction * photoAction = [UIAlertAction actionWithTitle:@"Gallery" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction * cameraAction = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:nil];
+    [actionsheet addAction:photoAction];
+    [actionsheet addAction:cameraAction];
+    [self presentViewController:actionsheet animated:YES completion:completion];
+    
+}
+
+
 /*
 #pragma mark - Navigation
 
