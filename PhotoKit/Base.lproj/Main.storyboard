@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,6 +25,9 @@
                                 <state key="normal" title="Open Gallery">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnShowPhotosClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VVG-66-WcS"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -57,7 +61,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="tmF-bH-ewv">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCollectionCell" id="tmF-bH-ewv" customClass="PhotoCollectionCell">
                                         <rect key="frame" x="0.0" y="0.0" width="170" height="148"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -75,8 +79,15 @@
                                             <constraint firstItem="vRb-ht-vxT" firstAttribute="leading" secondItem="tmF-bH-ewv" secondAttribute="leading" id="RHR-dl-0FU"/>
                                             <constraint firstAttribute="bottom" secondItem="vRb-ht-vxT" secondAttribute="bottom" id="RfI-Cd-h7G"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="vRb-ht-vxT" id="IaJ-m0-uYx"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="7fM-hY-fdT" id="3VP-Nu-jf3"/>
+                                    <outlet property="delegate" destination="7fM-hY-fdT" id="sFp-By-ldN"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -88,6 +99,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BZQ-xQ-mCu"/>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="Q3I-UT-KI1" id="osZ-s4-JxB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="THb-kx-3rx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

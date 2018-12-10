@@ -10,13 +10,13 @@
 #import <Photos/Photos.h>
 #import <PhotosUI/PhotosUI.h>
 
-
-
 @interface ImageSelectionCollectionViewController : UIViewController
-@property (nonatomic,strong) NSMutableArray * assets;
-
+@property (nonatomic,strong) NSMutableArray * albumArray;
 @property (nonatomic,strong) PHFetchResult *  fetchResult;
 @property (nonatomic,strong) PHAssetCollection * assetCollection;
+
+@property (nonatomic,weak) IBOutlet UICollectionView * collectionView;
+@property (nonatomic,strong) NSMutableArray * photoCollectionArray;
 
 @end
 
