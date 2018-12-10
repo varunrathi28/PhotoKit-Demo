@@ -7,6 +7,8 @@
 //
 
 #import "BaseViewController.h"
+#import <Photos/Photos.h>
+#import "ImageSelectionCollectionViewController.h"
 
 @interface BaseViewController ()
 
@@ -16,26 +18,72 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self requestauthorisationStatus];
     // Do any additional setup after loading the view.
 }
 
 
 -(void)requestauthorisationStatus {
 
+    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+        switch (status) {
+            case PHAuthorizationStatusDenied:
+                
+                break;
+                
+            case PHAuthorizationStatusAuthorized :
+                break;
+                
+                
+            case PHAuthorizationStatusRestricted:
+                break;
+                
+            case PHAuthorizationStatusNotDetermined:
+                break;
+                
+            default:
+                break;
+        }
+    }];
+    
+    
 }
 
 
+-(IBAction)btnShowPhotosClicked:(id)sender {
+    [self showAlertControllerFrom:self animated:YES completion:nil];
+}
+
 -(void)showAlertControllerFrom:(UIViewController *)vc animated:(BOOL)animated completion:(void (^ __nullable ) (void))completion  {
     
+    
+    __weak typeof(self) weakSelf = self;
+    
     UIAlertController * actionsheet = [UIAlertController new];
-    UIAlertAction * photoAction = [UIAlertAction actionWithTitle:@"Gallery" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction * photoAction = [UIAlertAction actionWithTitle:@"Gallery" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [weakSelf pushImageSelectionController];
+    }];
+    
     UIAlertAction * cameraAction = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:nil];
+    
+    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil];
+    
     [actionsheet addAction:photoAction];
     [actionsheet addAction:cameraAction];
+    [actionsheet addAction:cancelAction];
     [self presentViewController:actionsheet animated:YES completion:completion];
     
 }
 
+
+
+-(void)pushImageSelectionController{
+    UIStoryboard * storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ImageSelectionCollectionViewController * vc = [storyBoard instantiateViewControllerWithIdentifier:@"ImageSelectionCollectionViewController"];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
 
 /*
 #pragma mark - Navigation
