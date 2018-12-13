@@ -18,7 +18,11 @@
 
 @property (nonatomic,weak) IBOutlet UIImageView * imageView;
 
+@property (nonatomic,assign) BOOL isSelected;
+
 +(NSString *)reuseIdentifier;
+
+-(void)setCellSelected:(BOOL)selected;
 @end
 
 

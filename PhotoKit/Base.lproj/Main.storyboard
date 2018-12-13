@@ -68,8 +68,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="170" height="148"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vRb-ht-vxT">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vRb-ht-vxT">
                                                     <rect key="frame" x="0.0" y="0.0" width="170" height="148"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bbc-sa-Vyx">
+                                                    <rect key="frame" x="135" y="118" width="25" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="25" id="J4R-eK-fS1"/>
+                                                        <constraint firstAttribute="height" constant="20" id="zTY-wz-Xty"/>
+                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                         </view>
@@ -78,9 +85,12 @@
                                             <constraint firstItem="vRb-ht-vxT" firstAttribute="top" secondItem="tmF-bH-ewv" secondAttribute="top" id="Mmi-Pg-Kr8"/>
                                             <constraint firstItem="vRb-ht-vxT" firstAttribute="leading" secondItem="tmF-bH-ewv" secondAttribute="leading" id="RHR-dl-0FU"/>
                                             <constraint firstAttribute="bottom" secondItem="vRb-ht-vxT" secondAttribute="bottom" id="RfI-Cd-h7G"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="bbc-sa-Vyx" secondAttribute="bottom" constant="2" id="ZRi-mC-ZEQ"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="bbc-sa-Vyx" secondAttribute="trailing" constant="2" id="jq2-c2-cLp"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="vRb-ht-vxT" id="IaJ-m0-uYx"/>
+                                            <outlet property="imgAccessory" destination="bbc-sa-Vyx" id="gSX-kG-HMR"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -105,7 +115,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="THb-kx-3rx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1703.2" y="26.53673163418291"/>
+            <point key="canvasLocation" x="1709.5999999999999" y="46.326836581709152"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OS3-0d-q4f">

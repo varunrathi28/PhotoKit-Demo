@@ -21,6 +21,7 @@
 }
 
 @property (nonatomic,strong) PHCachingImageManager * imageManager;
+@property (nonatomic,strong) NSMutableOrderedSet * selectedAssets;
 
 
 @end
@@ -30,6 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _selectedAssets = [NSMutableOrderedSet new];
     _albumArray = [NSMutableArray new];
     _photoCollectionArray = [NSMutableArray new];
     
@@ -171,6 +173,9 @@
     phImageRequestOptions.resizeMode = PHImageRequestOptionsResizeModeExact;
     
     
+    BOOL isCellAlreadySelected = [self.selectedAssets containsObject:asset];
+    [cell setCellSelected:isCellAlreadySelected];
+    
     // Request every asset for specified size to be shown as thumbnail
     [_imageManager requestImageForAsset:asset
                              targetSize:thumbnailSize contentMode:PHImageContentModeAspectFill options:phImageRequestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
@@ -184,7 +189,15 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-
+    
+    PHAsset * selectedAsset = [_photoCollectionArray objectAtIndex:indexPath.row];
+    if ([self.selectedAssets containsObject:selectedAsset]) {
+        
+        [self.selectedAssets removeObject:selectedAsset];
+    } else {
+        [self.selectedAssets addObject:selectedAsset];
+    }
+    [collectionView reloadSections: [NSIndexSet indexSetWithIndex:indexPath.section]];
 }
 
 
