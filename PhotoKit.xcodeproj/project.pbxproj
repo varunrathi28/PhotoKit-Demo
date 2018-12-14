@@ -18,6 +18,9 @@
 		8B19105821A6A7E1007FD1C6 /* ImageSelectionCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B19105721A6A7E1007FD1C6 /* ImageSelectionCollectionViewController.m */; };
 		8B19105B21A6A9AC007FD1C6 /* PhotoCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B19105A21A6A9AC007FD1C6 /* PhotoCollectionCell.m */; };
 		8B19107221AD220A007FD1C6 /* PhtosDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B19107121AD220A007FD1C6 /* PhtosDataSource.m */; };
+		8B66430621C23E1600849AE3 /* ImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B66430521C23E1600849AE3 /* ImageManager.m */; };
+		8B66433821C394C800849AE3 /* AssetsCollectionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B66433721C394C800849AE3 /* AssetsCollectionListViewController.m */; };
+		8B66433B21C394DF00849AE3 /* CollectionTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B66433A21C394DF00849AE3 /* CollectionTableCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,12 @@
 		8B19105A21A6A9AC007FD1C6 /* PhotoCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoCollectionCell.m; sourceTree = "<group>"; };
 		8B19107021AD220A007FD1C6 /* PhtosDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhtosDataSource.h; sourceTree = "<group>"; };
 		8B19107121AD220A007FD1C6 /* PhtosDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhtosDataSource.m; sourceTree = "<group>"; };
+		8B66430421C23E1600849AE3 /* ImageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageManager.h; sourceTree = "<group>"; };
+		8B66430521C23E1600849AE3 /* ImageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageManager.m; sourceTree = "<group>"; };
+		8B66433621C394C800849AE3 /* AssetsCollectionListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetsCollectionListViewController.h; sourceTree = "<group>"; };
+		8B66433721C394C800849AE3 /* AssetsCollectionListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetsCollectionListViewController.m; sourceTree = "<group>"; };
+		8B66433921C394DF00849AE3 /* CollectionTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionTableCell.h; sourceTree = "<group>"; };
+		8B66433A21C394DF00849AE3 /* CollectionTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionTableCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +81,7 @@
 		8B19103921A6A622007FD1C6 /* PhotoKit */ = {
 			isa = PBXGroup;
 			children = (
+				8B66433121C3945600849AE3 /* Views */,
 				8B19103A21A6A622007FD1C6 /* AppDelegate.h */,
 				8B19103B21A6A622007FD1C6 /* AppDelegate.m */,
 				8B19103D21A6A622007FD1C6 /* ViewController.h */,
@@ -84,14 +94,59 @@
 				8B19104321A6A622007FD1C6 /* PhotoKit.xcdatamodeld */,
 				8B19105321A6A783007FD1C6 /* BaseViewController.h */,
 				8B19105421A6A783007FD1C6 /* BaseViewController.m */,
-				8B19105621A6A7E1007FD1C6 /* ImageSelectionCollectionViewController.h */,
-				8B19105721A6A7E1007FD1C6 /* ImageSelectionCollectionViewController.m */,
-				8B19105921A6A9AC007FD1C6 /* PhotoCollectionCell.h */,
-				8B19105A21A6A9AC007FD1C6 /* PhotoCollectionCell.m */,
 				8B19107021AD220A007FD1C6 /* PhtosDataSource.h */,
 				8B19107121AD220A007FD1C6 /* PhtosDataSource.m */,
+				8B66430421C23E1600849AE3 /* ImageManager.h */,
+				8B66430521C23E1600849AE3 /* ImageManager.m */,
 			);
 			path = PhotoKit;
+			sourceTree = "<group>";
+		};
+		8B66433121C3945600849AE3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8B66433221C3945600849AE3 /* TableView */,
+				8B66433321C3945600849AE3 /* CollectionView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8B66433221C3945600849AE3 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				8B66433521C394A300849AE3 /* Cell */,
+				8B66433621C394C800849AE3 /* AssetsCollectionListViewController.h */,
+				8B66433721C394C800849AE3 /* AssetsCollectionListViewController.m */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		8B66433321C3945600849AE3 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				8B66433421C3948600849AE3 /* Cell */,
+				8B19105621A6A7E1007FD1C6 /* ImageSelectionCollectionViewController.h */,
+				8B19105721A6A7E1007FD1C6 /* ImageSelectionCollectionViewController.m */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		8B66433421C3948600849AE3 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8B19105921A6A9AC007FD1C6 /* PhotoCollectionCell.h */,
+				8B19105A21A6A9AC007FD1C6 /* PhotoCollectionCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		8B66433521C394A300849AE3 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8B66433921C394DF00849AE3 /* CollectionTableCell.h */,
+				8B66433A21C394DF00849AE3 /* CollectionTableCell.m */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,10 +221,13 @@
 			files = (
 				8B19104521A6A622007FD1C6 /* PhotoKit.xcdatamodeld in Sources */,
 				8B19105521A6A783007FD1C6 /* BaseViewController.m in Sources */,
+				8B66433B21C394DF00849AE3 /* CollectionTableCell.m in Sources */,
 				8B19103F21A6A622007FD1C6 /* ViewController.m in Sources */,
+				8B66430621C23E1600849AE3 /* ImageManager.m in Sources */,
 				8B19104D21A6A623007FD1C6 /* main.m in Sources */,
 				8B19103C21A6A622007FD1C6 /* AppDelegate.m in Sources */,
 				8B19107221AD220A007FD1C6 /* PhtosDataSource.m in Sources */,
+				8B66433821C394C800849AE3 /* AssetsCollectionListViewController.m in Sources */,
 				8B19105821A6A7E1007FD1C6 /* ImageSelectionCollectionViewController.m in Sources */,
 				8B19105B21A6A9AC007FD1C6 /* PhotoCollectionCell.m in Sources */,
 			);
