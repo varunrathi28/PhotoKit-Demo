@@ -11,7 +11,7 @@
 
 
 @interface AssetsCollectionListViewController : UIViewController
-@property (nonatomic, weak) IBOutlet UITableView  * collectionTableView;
+@property (nonatomic, weak) IBOutlet UITableView  * tableView;
 
 @end
 

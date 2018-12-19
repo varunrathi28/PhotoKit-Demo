@@ -34,12 +34,39 @@
     _selectedAssets = [NSMutableOrderedSet new];
     _albumArray = [NSMutableArray new];
     _photoCollectionArray = [NSMutableArray new];
-    
     [self setUpCollectionViewLayout];
     [self loadData];
     [self getCollectionData:0];
+    [self setUpViews];
     
     // Do any additional setup after loading the view.
+}
+
+-(void)setUpViews {
+    
+    [self setUpNavigation];
+}
+
+-(void)setUpNavigation {
+    
+    // Title
+    self.navigationController.navigationItem.title = @"All Photos";
+    
+    // Left Button
+    UIBarButtonItem * leftBarButton = [[UIBarButtonItem alloc]initWithTitle:@"albums" style:UIBarButtonItemStyleDone target:self action:@selector(didPressLeftNavigationBarButton)];
+    self.navigationItem.leftBarButtonItem = leftBarButton;
+    
+    // Right Button
+     UIBarButtonItem * rightBarButton  = [[UIBarButtonItem alloc]initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(didPressRightNavigationBarButton)];
+    self.navigationItem.rightBarButtonItem = rightBarButton;
+}
+
+-(void)didPressLeftNavigationBarButton {
+    
+}
+
+-(void)didPressRightNavigationBarButton {
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 
