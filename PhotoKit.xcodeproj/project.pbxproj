@@ -21,6 +21,7 @@
 		8B66430621C23E1600849AE3 /* ImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B66430521C23E1600849AE3 /* ImageManager.m */; };
 		8B66433821C394C800849AE3 /* AssetsCollectionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B66433721C394C800849AE3 /* AssetsCollectionListViewController.m */; };
 		8B66433B21C394DF00849AE3 /* CollectionTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B66433A21C394DF00849AE3 /* CollectionTableCell.m */; };
+		8B66435221CBBB6500849AE3 /* PhotoAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B66435121CBBB6500849AE3 /* PhotoAsset.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,8 @@
 		8B66433721C394C800849AE3 /* AssetsCollectionListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetsCollectionListViewController.m; sourceTree = "<group>"; };
 		8B66433921C394DF00849AE3 /* CollectionTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionTableCell.h; sourceTree = "<group>"; };
 		8B66433A21C394DF00849AE3 /* CollectionTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionTableCell.m; sourceTree = "<group>"; };
+		8B66435021CBBB6500849AE3 /* PhotoAsset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoAsset.h; sourceTree = "<group>"; };
+		8B66435121CBBB6500849AE3 /* PhotoAsset.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoAsset.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +101,8 @@
 				8B19107121AD220A007FD1C6 /* PhtosDataSource.m */,
 				8B66430421C23E1600849AE3 /* ImageManager.h */,
 				8B66430521C23E1600849AE3 /* ImageManager.m */,
+				8B66435021CBBB6500849AE3 /* PhotoAsset.h */,
+				8B66435121CBBB6500849AE3 /* PhotoAsset.m */,
 			);
 			path = PhotoKit;
 			sourceTree = "<group>";
@@ -223,6 +228,7 @@
 				8B19105521A6A783007FD1C6 /* BaseViewController.m in Sources */,
 				8B66433B21C394DF00849AE3 /* CollectionTableCell.m in Sources */,
 				8B19103F21A6A622007FD1C6 /* ViewController.m in Sources */,
+				8B66435221CBBB6500849AE3 /* PhotoAsset.m in Sources */,
 				8B66430621C23E1600849AE3 /* ImageManager.m in Sources */,
 				8B19104D21A6A623007FD1C6 /* main.m in Sources */,
 				8B19103C21A6A622007FD1C6 /* AppDelegate.m in Sources */,
