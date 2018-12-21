@@ -9,11 +9,13 @@
 #import "AssetsCollectionListViewController.h"
 #import <Photos/Photos.h>
 #import "CollectionTableCell.h"
+#import "ImageManager.h"
+#import "ImageSelectionCollectionViewController.h"
 
 @interface AssetsCollectionListViewController () <UITableViewDelegate, UITableViewDataSource,PHPhotoLibraryChangeObserver>
 
 @property (nonatomic, strong) PHFetchResult * allPhotos;
-@property (nonatomic,strong) PHFetchResult * smartAlbums;
+@property (nonatomic,strong) PHFetchResult * albums;
 
 
 @end
@@ -48,7 +50,7 @@
     allPhotoOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
     
     _allPhotos = [PHAsset fetchAssetsWithOptions:allPhotoOptions];
-    _smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
+    _albums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
     
     [self registerPhotoLibrary];
 }
@@ -68,18 +70,14 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    return 1;
+    return 2;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
-           
-        case 0:
-            return _allPhotos.count;
-            break;
             
         case 1:
-            return _smartAlbums.count;
+            return _albums.count;
        
         default:
             return 1;
@@ -87,24 +85,64 @@
     };
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return 100.0;
+}
+
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
+    CGSize size = CGSizeMake(100, 100);
     
     CollectionTableCell * cell = [tableView dequeueReusableCellWithIdentifier:[CollectionTableCell reuseIdentifier] forIndexPath:indexPath];
     
     switch (indexPath.section) {
 
         case 0: {
-            PHAsset * asset = _allPhotos[indexPath.row];
-            cell.lblName.text = asset.accessibilityLabel;
+            PHAsset * asset = [_allPhotos lastObject];
+         //   cell.lblName.text = asset.accessibilityLabel;
+
+            cell.lblName.text = @"All Photos";
+            
+            PHImageRequestOptions * options = [[ImageManager defaultManager] imageRequestOptions];
+            
+            [[ImageManager defaultManager] requestImageForAsset:asset forSize:size options:options contentMode:PHImageContentModeAspectFill withCompletionHandler:^(UIImage * result) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                     cell.imgViewThumbnail.image = result;
+                });
+            }];
+
+            cell.lblCount.text =  [NSString stringWithFormat:@"%lu",(unsigned long)_allPhotos.count];
+            
         }
             
-        case 1: {
-            PHAssetCollection * assetCollection = [_smartAlbums objectAtIndex:indexPath.row];
-            cell.lblName.text = assetCollection.localizedTitle;
+            break;
             
+        case 1: {
+            
+            
+            PHAssetCollection * assetCollection = [_albums objectAtIndex:indexPath.row];
+            cell.lblName.text = assetCollection.localizedTitle;
+            if (assetCollection.estimatedAssetCount > 0) {
+                
+                cell.lblCount.text = [NSString stringWithFormat:@"%ld",assetCollection.estimatedAssetCount];
+                
+                PHImageRequestOptions * imageoptions = [[ImageManager defaultManager] imageRequestOptions];
+                
+                [[ImageManager defaultManager] fetchMostResentAssetFromCollection:assetCollection withSize:size options:imageoptions withCompletionHandler:^(UIImage * result) {
+
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                         cell.imgViewThumbnail.image = result;
+                    });
+                }];
+                
+            }else {
+                
+                cell.imgViewThumbnail.image = nil;
+            }
+   
         }
             break;
     }
@@ -113,6 +151,24 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+     ImageSelectionCollectionViewController * vc  = [ImageSelectionCollectionViewController loadFromStoryboard];
+    
+    switch (indexPath.section) {
+        case 0:
+            
+            break;
+            
+        default:
+        {
+            
+            PHAssetCollection * assetCollection = [_albums objectAtIndex:indexPath.row];
+            vc.selectedCollection = assetCollection;
+        }
+            break;
+    }
+    
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 

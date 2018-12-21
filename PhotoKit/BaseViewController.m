@@ -9,6 +9,7 @@
 #import "BaseViewController.h"
 #import <Photos/Photos.h>
 #import "ImageSelectionCollectionViewController.h"
+#import "AssetsCollectionListViewController.h"
 
 @interface BaseViewController ()
 
@@ -80,8 +81,16 @@
 
 -(void)pushImageSelectionController{
     UIStoryboard * storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    ImageSelectionCollectionViewController * vc = [storyBoard instantiateViewControllerWithIdentifier:@"ImageSelectionCollectionViewController"];
-    [self.navigationController pushViewController:vc animated:YES];
+    
+        AssetsCollectionListViewController * vc = [storyBoard instantiateViewControllerWithIdentifier:@"AssetsCollectionListViewController"];
+    
+  //  ImageSelectionCollectionViewController * vc = [storyBoard instantiateViewControllerWithIdentifier:@"ImageSelectionCollectionViewController"];
+    
+    
+    UINavigationController * navCon = [[UINavigationController alloc]initWithRootViewController:vc];
+    
+    [self presentViewController:navCon animated:YES completion:nil];
+    //[self.navigationController pushViewController:vc animated:YES];
     
 }
 
