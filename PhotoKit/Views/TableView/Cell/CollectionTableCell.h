@@ -14,7 +14,7 @@
 
 @property (nonatomic, weak) IBOutlet UIImageView * imgViewThumbnail;
 @property (nonatomic,weak) IBOutlet UILabel * lblName;
-
+@property (nonatomic,weak) IBOutlet UILabel * lblCount;
 
 +(NSString *) reuseIdentifier;
 @end

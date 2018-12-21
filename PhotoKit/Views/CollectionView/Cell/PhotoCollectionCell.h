@@ -18,6 +18,8 @@
 
 @property (nonatomic,weak) IBOutlet UIImageView * imageView;
 
+@property (nonatomic, weak) IBOutlet UILabel * progressLabel;
+
 @property (nonatomic,assign) BOOL isSelected;
 
 +(NSString *)reuseIdentifier;

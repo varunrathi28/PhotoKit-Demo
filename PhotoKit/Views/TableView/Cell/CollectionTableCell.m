@@ -30,6 +30,9 @@
 
 -(void)prepareForReuse {
     [super prepareForReuse];
+    _imgViewThumbnail.image = nil;
+    _lblCount.text = @"0";
+    _lblName.text = nil;
 }
 
 @end
