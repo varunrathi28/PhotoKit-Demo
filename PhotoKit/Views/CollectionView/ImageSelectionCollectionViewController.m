@@ -8,6 +8,7 @@
 
 #import "ImageSelectionCollectionViewController.h"
 #import "PhotoCollectionCell.h"
+#import "ImageManager.h"
 
 #define width_space 3
 #define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
@@ -27,6 +28,11 @@
 @end
 
 @implementation ImageSelectionCollectionViewController
+
++(instancetype)loadFromStoryboard {
+    UIStoryboard * main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    return [main instantiateViewControllerWithIdentifier:@"ImageSelectionCollectionViewController"];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -62,7 +68,7 @@
 }
 
 -(void)didPressLeftNavigationBarButton {
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)didPressRightNavigationBarButton {
@@ -80,20 +86,28 @@
 }
 
 -(void)loadData {
-    
-    
-    [self registerPhotosLibrary];
-    PHFetchOptions * allPhotosFetchOptions = [PHFetchOptions new];
-    allPhotosFetchOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
-    _fetchResult = [PHAsset fetchAssetsWithOptions:allPhotosFetchOptions];
-    [self addAllPhotosToSource:_fetchResult];
-    
-    PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
-    [self getFetchResultData:smartAlbums];
-    
+
     _imageManager = [[PHCachingImageManager alloc]init];
-   // _fetchResult = [PHFetchResult new];
     _assetCollection = [PHAssetCollection new];
+
+    
+    if (self.selectedCollection) {
+        
+     //   [PHAssetCollection fetch]
+        
+        PHFetchResult *albumCollections =  [PHAsset fetchAssetsInAssetCollection:self.selectedCollection options:nil];
+      //  [self getFetchResultData:albumCollections];
+        [self addAllPhotosToSource:albumCollections];
+        
+        
+    }else {
+        PHFetchOptions * allPhotosFetchOptions = [PHFetchOptions new];
+        allPhotosFetchOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
+        _fetchResult = [PHAsset fetchAssetsWithOptions:allPhotosFetchOptions];
+        [self addAllPhotosToSource:_fetchResult];
+    }
+    
+     [self registerPhotosLibrary];
     
 }
 
@@ -199,32 +213,69 @@
     PHImageRequestOptions * phImageRequestOptions = [PHImageRequestOptions new];
     phImageRequestOptions.resizeMode = PHImageRequestOptionsResizeModeExact;
     
-    
     BOOL isCellAlreadySelected = [self.selectedAssets containsObject:asset];
-    [cell setCellSelected:isCellAlreadySelected];
+   
+    if (isCellAlreadySelected){
+        [cell setCellSelected:YES];
+    }
+    
+    
+    if (isCellAlreadySelected){
+        cell.progressLabel.hidden = NO;
+        CGSize size = CGSizeMake(300, 600);
+        [[ImageManager defaultManager] downloadImageForAsset:asset forSize:size WithProgress:^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                 cell.progressLabel.text = [NSString stringWithFormat:@"%.1f",progress];
+            });
+            
+        
+        } completion:^(UIImage * image) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                cell.progressLabel.hidden = YES;
+                [cell setCellSelected:YES];
+            });
+           
+        }];
+
+    }
     
     // Request every asset for specified size to be shown as thumbnail
-    [_imageManager requestImageForAsset:asset
-                             targetSize:thumbnailSize contentMode:PHImageContentModeAspectFill options:phImageRequestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-                                 
-                                 if ([cell.representedAssetIdentifier isEqualToString:asset.localIdentifier]) {
-                                 cell.thumbNailImage = result;
-                                 }
-                             }];
+    
+    [[ImageManager defaultManager] requestImageForAsset:asset forSize:thumbnailSize options:phImageRequestOptions contentMode:PHImageContentModeAspectFill  withCompletionHandler:^(UIImage * result) {
+        
+        if ([cell.representedAssetIdentifier isEqualToString:asset.localIdentifier]) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                cell.thumbNailImage = result;
+            });
+            
+        }
+    }];
     
     return cell;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
+    BOOL isPicSelected;
+    
     PHAsset * selectedAsset = [_photoCollectionArray objectAtIndex:indexPath.row];
     if ([self.selectedAssets containsObject:selectedAsset]) {
         
         [self.selectedAssets removeObject:selectedAsset];
     } else {
+        isPicSelected = YES;
         [self.selectedAssets addObject:selectedAsset];
     }
     [collectionView reloadSections: [NSIndexSet indexSetWithIndex:indexPath.section]];
+    
+   
+    
+    
+    
+    
+    
 }
 
 

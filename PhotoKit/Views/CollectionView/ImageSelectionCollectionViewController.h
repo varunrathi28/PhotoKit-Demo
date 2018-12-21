@@ -15,9 +15,13 @@
 @property (nonatomic,strong) PHFetchResult *  fetchResult;
 @property (nonatomic,strong) PHAssetCollection * assetCollection;
 
+@property (nonatomic,strong) PHAssetCollection * selectedCollection;
+
 @property (nonatomic,weak) IBOutlet UICollectionView * collectionView;
 @property (nonatomic,strong) NSMutableArray * photoCollectionArray;
 
+
++(instancetype)loadFromStoryboard;
 @end
 
 
