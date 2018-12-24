@@ -12,7 +12,7 @@
 
 #define width_space 3
 #define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
-#define MAX_ITEM_PER_ROW    4
+#define MAX_ITEM_PER_ROW    3
 
 
 @interface ImageSelectionCollectionViewController ()<UICollectionViewDelegate,UICollectionViewDataSource, PHPhotoLibraryChangeObserver> {
@@ -115,7 +115,7 @@
     
     UICollectionViewFlowLayout * layout = [UICollectionViewFlowLayout new];
     layout.minimumInteritemSpacing = width_space;
-    layout.minimumInteritemSpacing = width_space;
+    layout.minimumLineSpacing = width_space;
    CGFloat maxPossibleHeight =  (SCREEN_WIDTH - width_space * (MAX_ITEM_PER_ROW - 1))/MAX_ITEM_PER_ROW;
     layout.itemSize = CGSizeMake(maxPossibleHeight, maxPossibleHeight);
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;

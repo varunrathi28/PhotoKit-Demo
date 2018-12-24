@@ -31,6 +31,7 @@
 
 -(void)setUpViews {
     [self setUpTableView];
+    [self setUpNavigation];
     
 }
 
@@ -42,6 +43,19 @@
 
 -(void)dealloc {
     [self unregisterPhotoLibrary];
+}
+
+-(void)setUpNavigation {
+    
+    self.navigationItem.title = @"Albums";
+    UIBarButtonItem * rightItem = [[UIBarButtonItem alloc]initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(rightNavigationButtonPressed)];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    
+}
+
+-(void)rightNavigationButtonPressed{
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)setupData
